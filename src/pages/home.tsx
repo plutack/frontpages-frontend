@@ -12,7 +12,7 @@ const fetchPapers = async (): Promise<{
   papers: PaperDetailsType[];
   timestamp: number;
 }> => {
-  const response = await fetch("http://localhost:8000/api/today");
+  const response = await fetch(`${process.env.API_URL}/today`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -89,7 +89,7 @@ function Home() {
       {lastUpdateTime && (
         <p>Last updated: {new Date(lastUpdateTime).toLocaleString()}</p>
       )}
-      
+
       <h1>Today's Papers</h1>
       <div className="grid gap-4 items-center justify-center md:grid-cols-2 lg:grid-cols-3">
         {data.papers.map((paper) => (
