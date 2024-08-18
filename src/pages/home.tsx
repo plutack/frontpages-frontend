@@ -12,7 +12,8 @@ const fetchPapers = async (): Promise<{
   papers: PaperDetailsType[];
   timestamp: number;
 }> => {
-  const response = await fetch(`${process.env.API_URL}/today`);
+  const baseUrl = "https://frontpagesapi.talut.tech/api";
+  const response = await fetch(`${baseUrl}/today`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
