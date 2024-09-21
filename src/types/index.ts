@@ -1,4 +1,5 @@
 export type PaperDetailsType = {
-  paperName: string;
-  paperLink: string;
+  id: string;
+  name: string;
+  link: string;
 };

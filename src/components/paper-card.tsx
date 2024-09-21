@@ -25,11 +25,11 @@ function PaperCard(paper: PaperDetailsType) {
   return (
     <Card>
       <CardContent>
-        <img src={paper.paperLink} alt={paper.paperName} />
+        <img src={paper.link} alt={paper.name} />
       </CardContent>
       <CardFooter className="flex justify-center">
         <CardDescription className="text-center w-full">
-          {getPaperDisplayName(paper.paperName)}
+          {getPaperDisplayName(paper.name)}
         </CardDescription>
       </CardFooter>
     </Card>
