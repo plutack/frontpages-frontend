@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const fetchPapers = async (): Promise<PaperDetailsType[]> => {
-  const baseUrl = "http://localhost:5000";
+  const baseUrl = "https://frontpagesapi.talut.tech";
   const response = await fetch(`${baseUrl}/newspapers`);
   if (!response.ok) {
     throw new Error("Network response was not ok");

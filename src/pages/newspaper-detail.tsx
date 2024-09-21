@@ -29,7 +29,7 @@ type NewspaperData = {
 };
 
 const fetchNewspaperDetails = async (id: string): Promise<NewspaperData> => {
-  const response = await fetch(`http://localhost:5000/newspapers/${id}`);
+  const response = await fetch(`https://frontpagesapi.talut.tech/newspapers/${id}`);
   if (!response.ok) {
     throw new Error('Failed to fetch newspaper details');
   }
