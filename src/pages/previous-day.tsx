@@ -4,9 +4,19 @@ import PaperCard from "@/components/paper-card";
 import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const getYesterdayDate = () => {
+    const today = new Date();
+    today.setDate(today.getDate() - 1);
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const day = String(today.getDate()).padStart(2, '0');
+  
+    return `${year}-${month}-${day}`;
+  };
+
 const fetchPapers = async (): Promise<PaperDetailsType[]> => {
   const baseUrl = "https://frontpagesapi.talut.tech";
-  const response = await fetch(`${baseUrl}/newspapers`);
+  const response = await fetch(`${baseUrl}/newspapers?date=${getYesterdayDate()}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -20,19 +30,11 @@ const fetchPapers = async (): Promise<PaperDetailsType[]> => {
   return data.result;
 };
 
-const getYesterdayDate = () => {
-  const today = new Date();
-  today.setDate(today.getDate() - 1);
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0'); 
-  const day = String(today.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-};
 
 
 
-function Home() {
+
+function Yesterday() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["papers"],
     queryFn: fetchPapers,
@@ -58,14 +60,6 @@ function Home() {
     return (
       <div className="flex flex-col items-center justify-center text-center h-screen">
         <p>No papers available at the moment.</p>
-        <p>Paper from today will be available at 10:00 AM WAT.</p>
-        <p>
-          Click{' '}
-          <Link to="/yesterday" className="text-blue-600 hover:underline">
-            here
-          </Link>{' '}
-          to see the previous day's papers.
-        </p>
       </div>
     );
   }
@@ -87,4 +81,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Yesterday;

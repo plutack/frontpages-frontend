@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/home";
 import Search from "@/pages/search";
 import NewspaperDetail from "@/pages/newspaper-detail";
+import Yesterday from "@/pages/previous-day";
+
 
 const queryClient = new QueryClient();
 
@@ -15,6 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/yesterday" element={< Yesterday/>} />
           <Route path="/search" element={<Search />} />
           <Route path="/newspapers/:id" element={<NewspaperDetail />} />
         </Routes>
