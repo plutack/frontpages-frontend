@@ -20,6 +20,18 @@ const fetchPapers = async (): Promise<PaperDetailsType[]> => {
   return data.result;
 };
 
+const getYesterdayDate = () => {
+  const today = new Date();
+  today.setDate(today.getDate() - 1);
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); 
+  const day = String(today.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
+
+
 function Home() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["papers"],
@@ -36,14 +48,21 @@ function Home() {
 
   if (error) {
     return (
-      <div className="text-red-500 flex justify-center">
-        {error instanceof Error ? error.message : "Something went wrong"}
+      <div className="text-red-500 flex justify-center items-center h-screen">
+        Something went wrong. Please try again later.
       </div>
     );
   }
 
   if (!data || data.length === 0) {
-    return <div className="text-center mt-8">No papers available at the moment.</div>;
+    return <div className="flex justify-center items-center h-screen">
+      <p>No papers available at the moment.</p>
+      <p>Paper from today will be availale at 10:00 AM. WAT</p>
+      <p>click below to see previous day's papers.</p>
+      <Link to={`?date=${getYesterdayDate()}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        See Previous Day's Papers
+      </Link>
+    </div>;
   }
 
   return (
