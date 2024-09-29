@@ -50,7 +50,7 @@ function Home() {
     return (
       <div className="flex flex-col items-center justify-center text-center h-screen">
         <p>No papers available at the moment.</p>
-        <p>Paper from today will be available at 10:00 AM WAT.</p>
+        <p>Paper from today will be available at 11:00 AM WAT.</p>
         <p>
           Click{' '}
           <Link to="/yesterday" className="text-blue-600 hover:underline">
